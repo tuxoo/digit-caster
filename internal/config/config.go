@@ -13,7 +13,11 @@ const (
 	defaultTokenTTL           = 30 * time.Minute
 )
 
-type Config struct {
+type (
+	Config struct {
+		HTTPConfig HTTPConfig
+	}
+
 	HTTPConfig struct {
 		Host               string        `mapstructure:"host"`
 		Port               string        `mapstructure:"port"`
@@ -21,7 +25,7 @@ type Config struct {
 		WriteTimeout       time.Duration `mapstructure:"writeTimeout"`
 		MaxHeaderMegabytes int           `mapstructure:"maxHeaderMegabytes"`
 	}
-}
+)
 
 func InitConfig(path string) (*Config, error) {
 	viper.AutomaticEnv()

@@ -3,7 +3,9 @@ package app
 import (
 	"context"
 	"digit-caster/internal/config"
+	"digit-caster/internal/http"
 	"digit-caster/internal/server"
+	"digit-caster/internal/service"
 	"github.com/sirupsen/logrus"
 	"os"
 	"os/signal"
@@ -16,7 +18,10 @@ func Run(configPath string) {
 		logrus.Fatalf("error initializing configs: %s", err.Error())
 	}
 
-	httpServer := server.NewHTTPServer(cfg, httpHandlers.Init(cfg.HTTP))
+	services := service.NewServices()
+
+	httpHandlers := http.NewHandler(services.CalculationService)
+	httpServer := server.NewHTTPServer(cfg, httpHandlers.InitHandler(cfg.HTTPConfig))
 
 	go func() {
 		if err := httpServer.Run(); err != nil {
