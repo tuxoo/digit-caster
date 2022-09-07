@@ -1,13 +1,14 @@
 package service
 
-import "context"
+import . "digit-caster/internal/model"
 
 type Calculations interface {
-	Summation(ctx context.Context)
-	Subtraction(ctx context.Context)
-	Multiple(ctx context.Context)
-	Division(ctx context.Context)
-	Square(ctx context.Context)
+	Calculate(calcState CalcState) float32
+	addition(firstMember, secondMember float32) float32
+	subtraction(firstMember, secondMember float32) float32
+	multiplication(firstMember, secondMember float32) float32
+	division(firstMember, secondMember float32) float32
+	square(member float32) float32
 }
 
 type Services struct {

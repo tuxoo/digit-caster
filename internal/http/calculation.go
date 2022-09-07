@@ -1,34 +1,24 @@
 package http
 
-import "github.com/gin-gonic/gin"
+import (
+	. "digit-caster/internal/model"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 func (h *Handler) initCalculationRoutes(api *gin.RouterGroup) {
-	calculation := api.Group("/calculation")
-	{
-		calculation.GET("/sum/", h.summation)
-		calculation.GET("/sub/", h.subtraction)
-		calculation.GET("/mul/", h.multiple)
-		calculation.GET("/div/", h.division)
-		calculation.GET("/squ/", h.square)
+	api.POST("/calculation", h.addition)
+}
+
+func (h *Handler) addition(c *gin.Context) {
+	var calcState CalcState
+	if err := c.ShouldBindJSON(&calcState); err != nil {
+		return
 	}
-}
 
-func (h *Handler) summation(c *gin.Context) {
+	sum := h.calculationService.Calculate(calcState)
+	result := fmt.Sprintf("%g", sum)
 
-}
-
-func (h *Handler) subtraction(c *gin.Context) {
-
-}
-
-func (h *Handler) multiple(c *gin.Context) {
-
-}
-
-func (h *Handler) division(c *gin.Context) {
-
-}
-
-func (h *Handler) square(c *gin.Context) {
-
+	c.String(http.StatusOK, result)
 }
