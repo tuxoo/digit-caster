@@ -8,7 +8,7 @@ type Calculations interface {
 	subtraction(firstMember, secondMember float32) float32
 	multiplication(firstMember, secondMember float32) float32
 	division(firstMember, secondMember float32) float32
-	square(member float32) float32
+	square(firstMember, secondMember float32) float32
 }
 
 type Services struct {

@@ -1,6 +1,9 @@
 package service
 
-import . "digit-caster/internal/model"
+import (
+	. "digit-caster/internal/model"
+	"math"
+)
 
 type CalculationService struct {
 }
@@ -21,7 +24,7 @@ func (s *CalculationService) Calculate(calcState CalcState) float32 {
 	case "/":
 		result = s.division(calcState.PreviousNum, calcState.CurrentNum)
 	case "^":
-		result = s.square(calcState.CurrentNum)
+		result = s.square(calcState.PreviousNum, calcState.CurrentNum)
 	}
 
 	return result
@@ -43,6 +46,6 @@ func (s *CalculationService) division(firstMember, secondMember float32) float32
 	return firstMember / secondMember
 }
 
-func (s *CalculationService) square(member float32) float32 {
-	return member * member
+func (s *CalculationService) square(firstMember, secondMember float32) float32 {
+	return float32(math.Pow(float64(firstMember), float64(secondMember)))
 }
