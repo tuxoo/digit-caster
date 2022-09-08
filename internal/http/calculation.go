@@ -2,7 +2,6 @@ package http
 
 import (
 	. "digit-caster/internal/model"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -17,8 +16,7 @@ func (h *Handler) addition(c *gin.Context) {
 		return
 	}
 
-	sum := h.calculationService.Calculate(calcState)
-	result := fmt.Sprintf("%g", sum)
+	result := h.calculationService.Calculate(calcState)
 
 	c.String(http.StatusOK, result)
 }

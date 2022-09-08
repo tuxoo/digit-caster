@@ -3,12 +3,12 @@ package service
 import . "digit-caster/internal/model"
 
 type Calculations interface {
-	Calculate(calcState CalcState) float32
-	addition(firstMember, secondMember float32) float32
-	subtraction(firstMember, secondMember float32) float32
-	multiplication(firstMember, secondMember float32) float32
-	division(firstMember, secondMember float32) float32
-	square(firstMember, secondMember float32) float32
+	Calculate(calcState CalcState) string
+	addition(firstMember, secondMember float64) float64
+	subtraction(firstMember, secondMember float64) float64
+	multiplication(firstMember, secondMember float64) float64
+	division(firstMember, secondMember float64) float64
+	square(firstMember, secondMember float64) float64
 }
 
 type Services struct {
