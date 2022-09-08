@@ -10,11 +10,11 @@ services:
     ports:
       - ${HTTP_PORT}:9000
     networks:
-      idler-net:
+      digit-caster-net:
         ipv4_address: 172.28.1.1
 
 networks:
-  idler-net:
+  digit-caster-net:
     ipam:
       driver: default
       config:
