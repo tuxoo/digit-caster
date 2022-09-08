@@ -1,8 +1,9 @@
 version: "3.8"
 
 services:
-  digit-caster:
-    container_name: digit-caster
+  digit-caster-be:
+    container_name: digit-caster-be
+    image: digit-caster-be:1.0
     build: ./
     restart: on-failure
     env_file:
