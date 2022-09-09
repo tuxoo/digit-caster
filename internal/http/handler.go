@@ -20,6 +20,7 @@ func NewHandler(calculationService service.Calculations) *Handler {
 
 func (h *Handler) InitHandler(cfg config.HTTPConfig) *gin.Engine {
 	router := gin.New()
+	router.Static("/image", "./web")
 
 	corsConfig := cors.Config{
 		AllowOrigins:     []string{"*"},
